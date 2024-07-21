@@ -12,7 +12,8 @@ const Hero = () => {
     e.preventDefault();
     try {
       const endpoint =
-        inputType === "text" ? "/api/detect-text" : "/api/detect-url";
+        inputType === "text" ? "./api/detect-text" : "./api/detect-url";
+
       const response = await fetch(endpoint, {
         method: "POST",
         headers: {
