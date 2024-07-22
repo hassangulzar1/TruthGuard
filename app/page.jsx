@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-
 const Hero = () => {
   const [input, setInput] = useState("");
   const [result, setResult] = useState(null);
@@ -10,7 +9,7 @@ const Hero = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const endpoint = `${process.env.NEXT_PUBLIC_BACKEND_URL}/submit`;
+      const endpoint = `./api/classify`;
       console.log("Endpoint:", endpoint);
 
       const response = await fetch(endpoint, {
@@ -38,7 +37,6 @@ const Hero = () => {
     }
   };
 
-  console.log(result);
   return (
     <div
       className="flex flex-col justify-center px-4"
@@ -102,14 +100,20 @@ const Hero = () => {
                 color: result.response === "Fake" ? "red" : "green",
               }}
             >
-              {result.response}
+              {result.classification}
             </strong>
           </p>
         </div>
       )}
       {error && (
-        <div className="mt-4 p-4 bg-red-100 rounded-md">
-          <p>{error}</p>
+        <div
+          className="mt-4 p-4 bg-red-100 rounded-md"
+          style={{
+            width: "10%",
+            margin: "0 auto",
+          }}
+        >
+          <p style={{ color: "black", textAlign: "center" }}>{error}</p>
         </div>
       )}
     </div>
