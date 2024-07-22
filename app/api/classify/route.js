@@ -33,6 +33,8 @@ export async function POST(request) {
       }
     );
 
+    console.log(response);
+
     const classification = response.data.choices[0].text.trim();
     return new Response(JSON.stringify({ classification }), { status: 200 });
   } catch (error) {

@@ -29,11 +29,9 @@ const Hero = () => {
       }
 
       const data = await response.json();
-      console.log("Data:", data);
       setResult(data);
       setError(null);
     } catch (err) {
-      console.error("Error:", err);
       setError("API request failed");
       setResult(null);
     } finally {
@@ -90,9 +88,10 @@ const Hero = () => {
         <div
           className={`mt-4 p-4  rounded-md`}
           style={{
-            width: "10%",
+            width: "50vw",
             margin: "0 auto",
             backgroundColor: result.response === "Fake" ? "#fee2e2" : "#f5f5f5",
+            textAlign: "center",
           }}
         >
           <h2 className="text-xl font-semibold" style={{ color: "black" }}>
@@ -101,6 +100,7 @@ const Hero = () => {
           <p>
             <span style={{ color: "black" }}>News Status:</span>
             <strong
+              className="ms-2"
               style={{
                 color: result.response === "Fake" ? "red" : "green",
               }}
@@ -114,8 +114,9 @@ const Hero = () => {
         <div
           className="mt-4 p-4 bg-red-100 rounded-md"
           style={{
-            width: "10%",
+            width: "50vw",
             margin: "0 auto",
+            textAlign: "center",
           }}
         >
           <p style={{ color: "black", textAlign: "center" }}>{error}</p>
