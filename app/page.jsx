@@ -4,7 +4,6 @@ import React, { useState } from "react";
 
 const Hero = () => {
   const [input, setInput] = useState("");
-  const [inputType, setInputType] = useState("text");
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
 
