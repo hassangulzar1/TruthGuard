@@ -2,9 +2,8 @@ import axios from "axios";
 
 export async function POST(request) {
   const article = await request.json();
-  console.log(article.input);
 
-  if (!article) {
+  if (article.input.trim() == "") {
     return new Response(
       JSON.stringify({ error: "Article content is required" }),
       { status: 400 }
@@ -12,9 +11,8 @@ export async function POST(request) {
   }
 
   try {
-    const apiKey = process.env.TOGETHER_API_KEY;
-
-    console.log(apiKey);
+    const apiKey =
+      "72c2a773a8fb09e30177a1645f0520b7461ef6055e2385293a0c5d9d4551cffe";
 
     const response = await axios.post(
       "https://api.together.xyz/v1/completions",
