@@ -46,7 +46,7 @@ const Hero = () => {
     >
       <div
         className="flex items-center flex-col"
-        style={{ margin: "10% auto 0 auto" }}
+        style={{ margin: "5% auto 0 auto" }}
       >
         <h1 className="text-5xl text-center my-7" style={{ color: "white" }}>
           TruthGuard - AI Powered Fake News Detection App
