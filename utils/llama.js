@@ -1,7 +1,4 @@
 // utils/llama.js
-// Replace this with the actual import if you have the correct path
-// import { TogetherEmbedding } from 'llama_index/embeddings/together';
-
 const API_KEY = process.env.TOGETHER_API_KEY;
 
 export function preprocessText(text) {
@@ -45,5 +42,18 @@ export async function callLlama3Model(embeddingData) {
   } catch (error) {
     console.error("Error calling Llama3 API:", error);
     throw new Error("Failed to analyze with Llama3");
+  }
+}
+
+// Mock function for fetchTitleFromUrl - replace with actual implementation
+export async function fetchTitleFromUrl(url) {
+  try {
+    const response = await fetch(url);
+    const text = await response.text();
+    const titleMatch = text.match(/<title>(.*?)<\/title>/);
+    return titleMatch ? titleMatch[1] : "No title found";
+  } catch (error) {
+    console.error("Error fetching title from URL:", error);
+    throw new Error("Failed to fetch title from URL");
   }
 }

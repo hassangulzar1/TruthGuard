@@ -1,40 +1,40 @@
 // app/api/detect-url/route.js
 import { NextResponse } from "next/server";
-import fetch from "node-fetch"; // Make sure to install node-fetch if not already
 import {
   preprocessText,
   dataEmbedding,
   callLlama3Model,
-} from "../../../utils/llama"; // Import utility functions
-
-async function fetchTitleFromUrl(url) {
-  try {
-    const response = await fetch(url);
-    const text = await response.text();
-    const titleMatch = text.match(/<title>(.*?)<\/title>/);
-    return titleMatch ? titleMatch[1] : "No title found";
-  } catch (error) {
-    console.error("Error fetching title from URL:", error);
-    throw new Error("Failed to fetch title");
-  }
-}
+  fetchTitleFromUrl,
+} from "../../../utils/llama";
 
 export async function POST(request) {
   try {
+    // Parse the JSON body from the request
     const { input } = await request.json();
-    console.log("Received URL input:", input);
+
+    // Check if input is a URL
+    const isUrl = (input) =>
+      input.startsWith("http://") || input.startsWith("https://");
 
     let content;
-    if (input.startsWith("http://") || input.startsWith("https://")) {
+
+    // Fetch title from URL if input is a URL
+    if (isUrl(input)) {
       content = await fetchTitleFromUrl(input);
     } else {
       content = input;
     }
 
+    // Preprocess the content
     const preprocessedData = preprocessText(content);
+
+    // Get embeddings from the preprocessed data
     const embeddingData = await dataEmbedding(preprocessedData);
+
+    // Call the Llama3 model API with the embeddings
     const responseData = await callLlama3Model(embeddingData);
 
+    // Return the response data as JSON
     return NextResponse.json(responseData);
   } catch (error) {
     console.error("Error in /api/detect-url route:", error);

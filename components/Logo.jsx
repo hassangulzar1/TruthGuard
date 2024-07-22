@@ -1,10 +1,10 @@
 import React from "react";
-import Image from "next/image";
-import logoImg from "../public/logo-white.png";
 const Logo = () => {
   return (
     <div>
-      <h1>Fake news Drecttocor</h1>
+      <h1 style={{ fontSize: "1.5rem" }}>
+        TruthGuard - AI Powered Fake News Detection
+      </h1>
     </div>
   );
 };
