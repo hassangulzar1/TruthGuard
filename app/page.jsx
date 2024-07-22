@@ -44,7 +44,7 @@ const Hero = () => {
   return (
     <div
       className="flex flex-col justify-center px-4"
-      style={{ height: "94.5vh", backgroundColor: "#1F2937" }}
+      style={{ height: "100vh", backgroundColor: "#1F2937" }}
     >
       <div
         className="flex items-center flex-col"
