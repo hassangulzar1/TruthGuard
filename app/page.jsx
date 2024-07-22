@@ -5,12 +5,14 @@ const Hero = () => {
   const [input, setInput] = useState("");
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setloading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const endpoint = `./api/classify`;
       console.log("Endpoint:", endpoint);
+      setloading(true);
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -34,6 +36,8 @@ const Hero = () => {
       console.error("Error:", err);
       setError("API request failed");
       setResult(null);
+    } finally {
+      setloading(false);
     }
   };
 
@@ -73,10 +77,11 @@ const Hero = () => {
 
           <button
             style={{ marginTop: "10px" }}
+            disabled={loading}
             type="submit"
             className=" md:mt-0 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
           >
-            Detect
+            {loading ? "Detecting..." : "Detect"}
           </button>
         </div>
       </form>
