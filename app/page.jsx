@@ -63,8 +63,9 @@ const Hero = () => {
           <textarea
             className=" p-2 border border-gray-300 rounded-md"
             style={{
-              width: "500px",
+              width: "60%",
               backgroundColor: "#1F2937",
+              color: "white",
             }}
             placeholder="Enter text here..."
             value={input}
